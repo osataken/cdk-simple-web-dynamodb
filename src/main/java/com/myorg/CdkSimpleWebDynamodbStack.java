@@ -3,8 +3,10 @@ package com.myorg;
 import software.constructs.Construct;
 import software.amazon.awscdk.Stack;
 import software.amazon.awscdk.StackProps;
+import software.amazon.awscdk.services.s3;
 // import software.amazon.awscdk.Duration;
 // import software.amazon.awscdk.services.sqs.Queue;
+import software.amazon.awscdk.services.s3.Bucket;
 
 public class CdkSimpleWebDynamodbStack extends Stack {
     public CdkSimpleWebDynamodbStack(final Construct scope, final String id) {
@@ -20,5 +22,10 @@ public class CdkSimpleWebDynamodbStack extends Stack {
         // final Queue queue = Queue.Builder.create(this, "CdkSimpleWebDynamodbQueue")
         //         .visibilityTimeout(Duration.seconds(300))
         //         .build();
+
+        Bucket bucket = Bucket.Builder.create(this, "StaticWebBucket")
+                .bucketName("StaticWebBucket")
+                .versioned(false)
+                .build();
     }
 }
